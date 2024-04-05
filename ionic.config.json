@@ -1,0 +1,7 @@
+{
+  "name": "tarea8-App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

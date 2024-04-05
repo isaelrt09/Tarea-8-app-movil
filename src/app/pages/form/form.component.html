@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Formular Vivencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+//2021-1458----------------- Isael Ramon Tapia
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeMd="6" class="ion-padding">
+        <h1 class="ion-text-center">Formulario</h1>
+        <form #miForm="ngForm" (ngSubmit)="saveVivencia(miForm)">
+          <ion-item class="py-2">
+            <ion-label position="floating"> Titulo vivencia: </ion-label>
+            <ion-input name="titulo" ngModel placeholder="Titulo vivencia"></ion-input>
+          </ion-item>
+          <ion-item class="py-2">
+            <ion-label> Fecha vivencia: </ion-label>
+            <ion-input type="date" id="fecha" name="fecha" ngModel></ion-input>
+          </ion-item>
+          <ion-item class="py-2">
+            <ion-label position="floating"> Descripcion vivencia: </ion-label>
+            <ion-textarea name="descripcion" ngModel placeholder="Descripcion vivencia" [autoGrow]="true">
+            </ion-textarea>
+          </ion-item>
+
+          <div class="row py-2">
+            <div class="col-md-6">
+              <ion-button expand="block" size="small" fill="outline" type="button" (click)="addPhotoToGallery()">
+                <ion-icon slot="start" name="camera-outline"></ion-icon>
+                Tomar Foto
+              </ion-button>
+              <ion-button expand="block" size="small" fill="outline" type="button" (click)="clearImage()">
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                Eliminar Foto
+              </ion-button>
+            </div>
+            <div class="col-md-6">
+              <ion-button #grabar expand="block" size="small" fill="outline" type="button" (click)="recordAudio(grabar)">
+                <ion-icon slot="start" name="mic-outline"></ion-icon>
+                {{textGrabar}}
+              </ion-button>
+              <ion-button expand="block" size="small" fill="outline" type="button" (click)="stopRecording(grabar)">
+                <ion-icon slot="start" name="mic-off-outline"></ion-icon>
+                Detener Audio
+              </ion-button>
+            </div>
+
+            <ion-item class="py-2" *ngIf="image">
+              <img [src]="image" alt="foto_vivencia">
+            </ion-item>
+
+          </div>
+
+          <ion-button expand="block" class="mt-2" type="submit">Guardar</ion-button>
+
+        </form>
+      </ion-col>
+      <ion-col sizeMd="6" class="ion-padding" *ngIf="data.length > 0">
+        <app-list-vivencias [listOfVivencias]="data"></app-list-vivencias>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

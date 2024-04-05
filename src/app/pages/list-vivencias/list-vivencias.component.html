@@ -1,0 +1,36 @@
+<div *ngIf="listOfVivencias.length > 0">
+  <h1 class="ion-text-center">Listado De Vivencias</h1>
+<ion-grid class="mt-2">
+  <ion-button expand="block" size="small" fill="outline" type="button" (click)="clearData()">
+    <ion-icon slot="start" name="trash-outline"></ion-icon>
+    BORRAR TODO
+  </ion-button>
+
+  //2021-1458----------------- Isael Ramon Tapia
+  
+  <ion-row>
+    <ion-col sizeMd="6" *ngFor="let vivencia of listOfVivencias">
+      <ion-card color="light">
+        <img [src]="convertPhotoFromBase64(vivencia.image)" alt="imagen_vivencia"/>
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">Vivencia {{vivencia.titulo}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <div class="descripcion">
+            <h3 class="ion-text-center">{{vivencia.descripcion}}</h3>
+          </div>
+          <div *ngIf="vivencia.audio" class="my-3">
+            <ion-button size="small" expand="block" type="button" (click)="play(vivencia.audio, vivencia.type)">
+              <ion-icon slot="start" name="play-outline"></ion-icon>
+              Reproducir
+            </ion-button>
+          </div>
+          <p class="float-end">{{vivencia.fecha | date}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+</div>
